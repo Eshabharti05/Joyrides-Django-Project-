@@ -1,0 +1,66 @@
+
+      .slider img{
+        height: 80vh;
+        width: 98.9vw;
+      }
+      .center-align{
+        
+        margin: auto;
+        text-align: center;
+        line-height: 30px;
+        letter-spacing:2px;
+      }
+      .center-align h1{
+        color: #343232;
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        text-decoration: underline;
+      }
+      .center-align p{
+        color:black;
+        font-family: Arial, Helvetica, sans-serif;
+        word-spacing: 2px;
+        
+      }
+      @media (min-width: 991.98px) {
+      .box{
+       
+        display: flex;
+        
+        
+      }
+      }
+    
+    .heading{
+      color: #343232;
+    }
+    
+      .para{
+        border: 1px solid #FFE7C7;
+        margin: 4px 20px;
+        padding:23px;
+        width: 33%;
+        background-color: #FFE7C7;
+      }
+    
+      @media (min-width: 991.98px) {
+      .features-service-tags{
+       
+        display :flex;
+        justify-content: center;
+        
+      }
+
+      .features-service-tags--child{
+       margin: 4px 20px;
+       padding: 10px 23px;
+      }
+      }
+    .lastline{
+      border: 5px solid black;
+      word-spacing: 5px;
+    }
+  .features-service-tags--child-tagline{
+    color:#343232
+  }
+

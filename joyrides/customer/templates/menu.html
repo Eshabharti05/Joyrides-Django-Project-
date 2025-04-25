@@ -1,0 +1,134 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <!-- Required meta tags -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap"
+  rel="stylesheet">
+
+  <!-- CSS Libraries -->
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    
+</head>
+
+<body>
+
+ <!-- Top bar Start -->
+ <div class="top-bar">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-6">
+              <i class="fa fa-envelope"></i>
+              joyrides@email.com
+          </div>
+          <div class="col-sm-6">
+              <i class="fa fa-phone-alt"></i>
+              +012-345-6789
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Top bar End -->
+
+<!-- Nav Bar Start -->
+<div class="nav">
+  <div class="container-fluid">
+      <nav class="navbar navbar-expand-md">
+          <div class="logo">
+              <a href="{% url 'home' %}">
+                  <img src="{% static 'images/images/logo.png' %}" alt="Logo" class="logo">
+                  <span class="logo_name">JOYRIDES</span>
+              </a>
+          </div>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+              <div class="navbar-nav mr-auto">
+                  <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                  <a href="{% url 'menu' %}" class="nav-item nav-link">Products</a>
+                  <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+                  <a href="{% url 'about' %}"class="nav-item nav-link">About Us</a>
+              </div>
+              <div class="navbar-nav ml-auto">
+                  <div class="nav-item dropdown">
+                      {% if 'email' in request.session %}
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                      <div class="dropdown-menu">
+                          <a href="" class="dropdown-item">Profile</a>
+                          <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                      </div>
+                      
+                      {% else %}
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sign In/Sign Up</a>
+                      <div class="dropdown-menu">
+                          <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                          <a href="{% url 'signup' %}" class="dropdown-item">Register</a>
+                      </div>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </nav>
+  </div>
+</div>
+<!-- Nav Bar End -->
+<div class="product-view">
+  <div class="container-fluid">
+      <div class="row">
+        {% for i in data %}
+        <div class="col-lg-3 col-md-4">
+          <div class="product-box1 hvr-float-shadow">
+              <div class="img">
+                <img class="lzyimg" style="width:15rem;height:15rem" src="{{ i.prod_img.url }}" alt="">
+              </div>
+              <div class="title-box">
+                <h3>{{ i.prod_name }}</h3>
+              </div>
+              <p class="cost">Rs. {{ i.price }} <small>/day</small></p>
+              <div class="action-button">
+                <a href="{% url 'viewdetails' i.id%}">
+                  <i class="fa fa-eye"></i>
+                  View Details
+                </a>
+              </div>
+            </div>        
+        </div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- JavaScript Libraries -->
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>Signup Form </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+
+</head>
+
+<body>
+     <!-- Top bar Start -->
+     <div class="top-bar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <i class="fa fa-envelope"></i>
+                    joyrides@email.com
+                </div>
+                <div class="col-sm-6">
+                    <i class="fa fa-phone-alt"></i>
+                    +012-345-6789
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top bar End -->
+
+    <!-- Nav Bar Start -->
+    <div class="nav">
+        <div class="container-fluid">
+
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/images/logo.png' %}" alt="Logo" class="logo">
+                        <span class="logo_name">JOYRIDES</span>
+                    </a>
+                </div>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                        <a href="{% url 'menu' %}" class="nav-item nav-link">Products</a>
+                        <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+                        <a href="{% url 'about' %}"class="nav-item nav-link">About Us</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            {% if 'email' in request.session %}
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                            <div class="dropdown-menu">
+                                <a href="" class="dropdown-item">Profile</a>
+                                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                            </div>
+                            
+                            {% else %}
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sign In/Sign Up</a>
+                            <div class="dropdown-menu">
+                                <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                                <a href="{% url 'signup' %}" class="dropdown-item">Register</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <div class="container">
+        <div class="myCard">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="myLeftCtn">
+                        <form onsubmit="validatebutton(event)" class="myForm text-center" action="{% url 'booking' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <header>Form for Booking</header>
+                            <div class="form-group">
+                                <label class="label">Username:</label>
+                               <input class="myInput" type="text" name="username" value="{{register_data.username}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Bike name</label>
+                               <input class="myInput" type="text" name="prod_name" value="{{prod_data.prod_name}}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="label">Aadhar no</label>
+                               <input class="myInput" type="number" id="aadharNumber" name="aadhar" placeholder="Adhar No" required>
+                            </div>
+                            <div id="aadharResult"></div>
+
+                            <div class="form-group">
+                                <label class="label">Driving License</label>
+                                <input class="myInput" type="text" id="licenseNumber" name="driving_license" placeholder="Driving License" required>
+                            </div>
+                            <div id="licenseResult"></div>
+                            
+                            <div class="form-group">
+                                <label class="label">PAN Card</label>
+                                <input class="myInput" type="number" id="pancardNumber" name="pan_card" placeholder="PAN Card" required>
+                            </div>
+                            <div id="panResult"></div>
+
+                            <div class="form-group">
+                                <label class="label">Address</label>
+                                 <textarea class="myInput" name="address" placeholder="Address" required></textarea>
+                                
+                            </div>
+                            <input name="bike_id" type="hidden" value="{{ prod_data.id }}">
+                            
+                            <input type="submit" class="butt" onclick="validatebutton()" value="RENT">
+
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validatebutton(){
+            let c=0;
+            var aadharNumber=document.getElementById("aadharNumber").value;
+            var pancardNumber=document.getElementById("pancardNumber").value;
+            var licenseNumber=document.getElementById("licenseNumber").value;
+            
+            var aadharResult=document.getElementById("aadharResult");
+            var licenseResult=document.getElementById("licenseResult");
+            var panResult=document.getElementById("panResult");
+
+            var aadharpattern=/^[0-9]{10}/;
+            var pancardpattern=/^[0-9]{10}/;
+            var licencepattern=/^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$/;
+
+            if(licencepattern.test(licenseNumber)){
+            }else{
+                licenseResult.innerHTML="Invalid driving license number";
+                event.preventDefault();
+            }
+
+            if(aadharpattern.test(aadharNumber)){
+            }else{
+                aadharResult.innerHTML="Invalid aadhar number";
+                event.preventDefault();
+            }
+
+            if(pancardpattern.test(pancardNumber)){
+            }else{
+                panResult.innerHTML="Invalid pan card number";
+                event.preventDefault();
+            }
+        }
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

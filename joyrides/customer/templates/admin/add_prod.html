@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>Add Product </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .container-form {
+        position: absolute;
+        max-width: 1000px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+      } 
+      
+      .myLeftCtn {
+        position: relative;
+        background: #fff;
+        border-radius: 25px;
+        height: 100%;
+        width: 1000px;
+        padding: 25px;
+        padding-left: 50px;
+      }
+      .row{
+      height: 100%;
+      } 
+      .myCard {
+        position: relative;
+        background: #fff;
+        height: 100%;
+        border-radius: 25px;
+      } 
+    
+      .box {
+        position: relative;
+        margin: 20px;
+        margin-bottom: 100px;
+      } 
+      .myLeftCtn .label{
+       
+        color: rgb(80, 77, 77);
+        font-size: 1em;
+      }
+      .myLeftCtn .myInput:focus {
+        outline: none;
+      } 
+      .myForm {
+        position: relative;
+        margin-top: 50px;
+      } 
+      .myLeftCtn .butt {
+        background: #8d1b1b;
+        color: #fff;
+        width: 230px;
+        border: none;
+        border-radius: 25px;
+        padding: 10px;
+        
+        box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+      } 
+      .myLeftCtn .butt:hover {
+        background: #641212;
+      }
+      .myLeftCtn .butt:focus {
+        outline: none;
+      } 
+      .logged_in{
+        margin-top: 1em;
+      }
+      .logged_in a{
+        color: #8d1b1b;
+      }
+      @media only screen and (max-width: 1030px) {
+        .container{
+          width: 962px;
+          height: 65vh;
+          transform: translate(-50%, 10%);
+        }
+        .myLeftCtn{
+          width: 800px;
+          height: 65vh;
+        }
+      } 
+      @media only screen and (max-width: 960px) {
+        .container{
+          width: 860px;
+          height: 60vh;
+        }
+        .myLeftCtn{
+          width: 700px;
+          height: 60vh;
+        }
+        .myCard{
+          width: 860px;
+        }
+      }
+      @media only screen and (max-width: 920px) {
+    
+        .container{
+          width: 800px;
+          height: 60vh;
+        }
+        .myLeftCtn{
+          width: 800px;
+          padding-left: 0.4em
+        }
+        .myLeftCtn .myInput{
+          width: 300px;
+        }
+        .myCard{
+          width: 700px;
+        }
+        .butt{
+          margin-top: 1em;
+          margin-left: 2em;
+        }
+      }
+      @media only screen and (max-width: 829px) {
+        .container{
+          width: 700px;
+        }
+        .myLeftCtn{
+          width: 600px;
+        }
+      }
+      @media only screen and (max-width: 760px) {
+        .container{
+          width: 600px;
+        }
+        .myCard{
+          width: 600px;
+        }
+      }
+      @media only screen and (max-width: 660px) {
+        .container{
+          width: 400px;
+          transform: translate(-70%,-0%);
+        }
+        .myLeftCtn{
+          width: 500px;
+        }
+        .myCard{
+          width: auto;
+        }
+      }
+      @media only screen and (max-width: 480px){
+        .container{
+          width: 300px;
+          height: 80vh;
+          transform: translate(-90%,5%);
+        }
+        .myLeftCtn{
+          width: 450px;
+          height: 80vh;
+        }
+        .form-group label{
+          width: 100vw;
+        }
+        .form-group .myInput{
+          width: 80vw;
+          margin-left: 2em;
+          margin-right: 2em;
+        }
+      }
+</style>
+<body>
+        
+        {% if messages %}
+{% for msg in messages %}
+{% if msg.level_tag == "error" %}
+<div class="alert alert-danger bg-danger text-white btnClose" role="alert">
+    {{msg.message}}
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+</div>
+{% else %}
+<div class="alert alert-success bg-success text-white btnClose" role="alert">
+    {{msg.message}}
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+<h1 class="text-center">Dashboard</h1>
+<div class="container">
+    <ul class="nav nav-tabs">
+      <li><a href="{% url 'user_list' %}">User</a></li>
+      <li><a href="{% url 'prod_detail' %}">Product Details</a></li>
+      <li class="active"><a data-toggle="tab" href="#add_prod">Add Product</a></li>
+      <li><a href="{% url 'order_list' %}">Order List</a></li>
+      <li><a href="{% url 'home' %}">Home</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="add_prod" class="tab-pane fade in active">
+            <h3 class="text-center">Add Product</h3>
+            <div class="container-form">
+                <div class="myCard">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="myLeftCtn">
+                                    <form class="myForm text-center" method="POST" action="{% url 'add_prod' %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="label">Product Name:</label>
+                                            <input class="myInput" type="text" name="prod_name" placeholder="Please enter Product_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">Price:</label>
+                                            <input class="myInput" type="text" name="price" placeholder="Please enter Price per day" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">Mileage:</label>
+                                            <input class="myInput" type="text" name="mileage" placeholder="Please enter Mileage in km/h" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">Color:</label>
+                                            <input class="myInput" type="text" name="color" placeholder="Please enter Color" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">CC:</label>
+                                            <input class="myInput" type="text" name="cc" placeholder="Please enter CC" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">Image:</label>
+                                            <input class="myInput" type="file" name="prod_img"  required>
+                                        </div>
+                                       <input type="submit" class="butt" value="ADD PRODUCT">
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    
+
+    <!-- JavaScript Libraries -->
+
+    
+    <script>
+        $(document).ready(function() {
+            setTimeout(function () {
+                $(".btnClose").remove();
+            }, 3000);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>About Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+     <!-- Template Stylesheet -->
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"type="text/css" />
+    
+    <style>
+      .slider img{
+        height: 80vh;
+        width: 98.9vw;
+      }
+      .center-align{
+        
+        margin: auto;
+        text-align: center;
+        line-height: 30px;
+        letter-spacing:2px;
+      }
+      .center-align h1{
+        color: #343232;
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        text-decoration: underline;
+      }
+      .center-align p{
+        color:black;
+        font-family: Arial, Helvetica, sans-serif;
+        word-spacing: 2px;
+        
+      }
+      @media (min-width: 991.98px) {
+      .box{
+       
+        display: flex;
+        
+        
+      }
+      }
+    
+    .heading{
+      color: #343232;
+    }
+    
+      .para{
+        border: 1px solid #FFE7C7;
+        margin: 4px 20px;
+        padding:23px;
+        width: 33%;
+        background-color: #FFE7C7;
+      }
+    
+      @media (min-width: 991.98px) {
+      .features-service-tags{
+       
+        display :flex;
+        justify-content: center;
+        
+      }
+
+      .features-service-tags--child{
+       margin: 4px 20px;
+       padding: 10px 23px;
+      }
+      }
+    .lastline{
+      border: 5px solid black;
+      word-spacing: 5px;
+    }
+  .features-service-tags--child-tagline{
+    color:#343232
+  }
+
+    </style>
+   
+</head>
+
+
+<body>
+   <!-- Top bar Start -->
+   <div class="top-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <i class="fa fa-envelope"></i>
+                joyrides@email.com
+            </div>
+            <div class="col-sm-6">
+                <i class="fa fa-phone-alt"></i>
+                +012-345-6789
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Top bar End -->
+
+<!-- Nav Bar Start -->
+<div class="nav">
+  <div class="container-fluid">
+      <nav class="navbar navbar-expand-md">
+          <div class="logo">
+              <a href="{% url 'home' %}">
+                  <img src="{% static 'images/images/logo.png' %}" alt="Logo" class="logo">
+                  <span class="logo_name">JOYRIDES</span>
+              </a>
+          </div>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+              <div class="navbar-nav mr-auto">
+                  <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                  <a href="{% url 'menu' %}" class="nav-item nav-link">Products</a>
+                  <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+                  <a href="{% url 'about' %}"class="nav-item nav-link">About Us</a>
+              </div>
+              <div class="navbar-nav ml-auto">
+                  <div class="nav-item dropdown">
+                      {% if 'email' in request.session %}
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                      <div class="dropdown-menu">
+                          <a href="" class="dropdown-item">Profile</a>
+                          <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                      </div>
+                      
+                      {% else %}
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sign In/Sign Up</a>
+                      <div class="dropdown-menu">
+                          <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                          <a href="{% url 'signup' %}" class="dropdown-item">Register</a>
+                      </div>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </nav>
+  </div>
+</div>
+<!-- Nav Bar End -->
+  
+  <div class="product-view">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="slider">
+          <img src="{% static 'images/images/about.jpg' %}" />
+        </div> 
+         <br>
+        <section class="center-align">
+          <div class="container heading-container">
+            <h1>Joyrides</h1>
+            <br>
+            <p >Welcome to Joyrides, your premier destination for hassle-free bike rentals.
+              <br>
+              At Joyrides, we believe everyone should have access to mobility.
+              <br>
+              A simple solution to the most complex challenges of the world.
+            </p>
+          </div>
+        </section>
+        <br>
+        <br>
+        <section class="features">
+      
+          <div class="features-service-tags">
+            <div class="features-service-tags--child">
+                <img src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/sanitized_vehicle-ffa9a8ac4750ddf94bc778791fe3fb1658bbbeaf4e31c9fe1287e734081664c4.svg" style="height:34px; " data-src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/sanitized_vehicle-ffa9a8ac4750ddf94bc778791fe3fb1658bbbeaf4e31c9fe1287e734081664c4.svg" alt="24/7 Roadside Assistance" class="features-service-tags--child-img-mobile_view lozad" data-loaded="true"> 
+                <p class="features-service-tags--child-tagline">Sanitized Vehicles</p>
+            </div>
+            <div class="features-service-tags--child">
+                <img src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/insurance-9bc77c524af240ca419056a77d7cb140615e3d0711d1755959ec75a4c99f8c9b.svg" style="height:34px; " data-src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/insurance-9bc77c524af240ca419056a77d7cb140615e3d0711d1755959ec75a4c99f8c9b.svg" alt="Vehicle Insurance" class="features-service-tags--child-img lozad" data-loaded="true"> 
+                <p class="features-service-tags--child-tagline">Vehicle Insurance</p>
+            </div>
+            <div class="features-service-tags--child">
+                <img src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/roadside_assistance-1e15e6c14e688dd300a3d18351d66b01d3876b0099a4f1fa6478fbfd62d11286.svg" style="height:34px; " data-src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/roadside_assistance-1e15e6c14e688dd300a3d18351d66b01d3876b0099a4f1fa6478fbfd62d11286.svg" alt="24/7 Roadside Assistance" class="features-service-tags--child-img lozad" data-loaded="true"> 
+                <p class="features-service-tags--child-tagline">24/7 Roadside Assistance</p>
+            </div>
+            <div class="features-service-tags--child">
+                <img src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/maintenance-7db03a0fa7cd8a4539e0719125fd898907c22716fbe5c8d11d8f0559f8512644.svg" style="height:31px; " data-src="https://d36g7qg6pk2cm7.cloudfront.net/assets/landing_page/maintenance-7db03a0fa7cd8a4539e0719125fd898907c22716fbe5c8d11d8f0559f8512644.svg" alt="Bike Maintenance" class="features-service-tags--child-img lozad" data-loaded="true"> 
+                <p class="features-service-tags--child-tagline">Bike Maintenance</p>
+            </div>
+          </div>
+        </section>
+        <br>
+        <br>
+            <section class="box"> 
+              <div class="para">  
+                <h3 class="heading">Our Vision</h3>    
+          <p >Transportation and mobility solutions is one of the least understood and most unorganized markets. We see this as an unexplored opportunity to build a system that can be trusted by everyone beyond barriers.Your satisfaction is our measure of success.</p>
+          
+      
+          
+        </div>
+        <div class="para">
+         <h3 class="heading"> Our Mission </h3>
+          <p >Since our inception, our mission has been to provide convenient, affordable, and sustainable transportation solutions to both locals and tourists alike.        We have no limitations when it comes to two wheelers and enjoy serving everything from a scooter to a superbike available on both website and mobile application.</p>
+        </div>
+        <div class="para">
+         <h3 class="heading">Why choose Us?</h3>
+          <p >1. Unparalleled Convenience: With our user-friendly online booking system, you can reserve your bike in just a few clicks.</p>
+          <p>2.Top-notch Quality: Your safety and satisfaction are our top priorities. That's why we meticulously maintain our fleet of bikes to guarantee that each ride is smooth, comfortable, and reliable. </p>
+        </div>
+          
+        </section>
+        <br>
+        <br>
+        <section class="center-align">
+          <div class="container heading-container">
+        
+           <p> Join us today and experience the joy of exploring Ranchi on one of our premium rental bikes. </p>
+            <p>Whether you're looking to pedal through the city streets, conquer rugged trails, or enjoy a leisurely ride along scenic routes,Joyrides has the perfect bike for you.</p>
+          <p>Thank you for choosing Joyrides and being a part of our mission to revolutionize the way we travel while preserving the beauty of our planet.</p>
+        </div>
+        
+      </section>
+      <!--footer start---->
+      <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Quick Link</h4>
+                    <a class="btn btn-link" href="#about">About Us</a>
+                    <a class="btn btn-link" href="#faculty">Faculty</a>
+                    <a class="btn btn-link" href="#courses">Courses</a>
+                    <a class="btn btn-link" href="#gallery">Gallery</a>
+                    <a class="btn btn-link" href="contact.aspx">FAQs & Help</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Contact</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker me-3"></i>Plot No. GA-7, Near Gramin Food Bazar, City Centre, Sector-4 Bokaro Steel City (Jharkhand)</p>
+                    <p class="mb-2"><i class="fa fa-phone me-3"></i>8340513648, 6205052457</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                  
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234447.66995607846!2d85.18124037459347!3d23.3431424976028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4e104aa5db7dd%3A0xdc09d49d6899f43e!2sRanchi%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1685683660398!5m2!1sen!2sin" style="display: block;width:100%;" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

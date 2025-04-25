@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>login </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Libraries -->
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
+
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+
+
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+      }
+      body {
+        background: #fbf3ff;
+      } 
+      .container {
+        position: absolute;
+        max-width: 1000px;
+        left: 50%;
+        transform: translate(-50%, 20%);
+      } 
+      
+      .myLeftCtn {
+        position: relative;
+        background: #fff;
+        border-radius: 25px;
+        height: 100%;
+        width: 1000px;
+        padding: 25px;
+        padding-left: 50px;
+      }
+      .myLeftCtn header {
+        color: #8d1b1b;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .row{
+      height: 100%;
+      } 
+      .myCard {
+        position: relative;
+        background: #fff;
+        height: 100%;
+        border-radius: 25px;
+       
+        box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+      } 
+    
+      .box {
+        position: relative;
+        margin: 20px;
+        margin-bottom: 100px;
+      } 
+      .myLeftCtn .label{
+        width: 10em;
+      }
+      .myLeftCtn .myInput {
+        width: 430px;
+        border-radius: 25px;
+        padding: 10px;
+        padding-left: 50px;
+        border: none;
+        
+        box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+      }
+      .myLeftCtn .myInput:focus {
+        outline: none;
+      } 
+      .myForm {
+        position: relative;
+        margin-top: 50px;
+      } 
+      .myLeftCtn .butt {
+        background: #8d1b1b;
+        color: #fff;
+        width: 230px;
+        border: none;
+        border-radius: 25px;
+        padding: 10px;
+        
+        box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+      } 
+      .myLeftCtn .butt:hover {
+        background: #641212;
+      }
+      .myLeftCtn .butt:focus {
+        outline: none;
+      } 
+      .myLeftCtn .fas {
+        position: relative;
+        color: #bb36fd;
+        left: 36px;
+      } 
+      .logged_in{
+        margin-top: 1em;
+      }
+      .logged_in a{
+        color: #8d1b1b;
+      }
+      @media only screen and (max-width: 1030px) {
+        .container{
+          width: 962px;
+          height: 65vh;
+          transform: translate(-50%, 10%);
+        }
+        .myLeftCtn{
+          width: 800px;
+          height: 65vh;
+        }
+      } 
+      @media only screen and (max-width: 960px) {
+        .container{
+          width: 860px;
+          height: 60vh;
+        }
+        .myLeftCtn{
+          width: 700px;
+          height: 60vh;
+        }
+        .myCard{
+          width: 860px;
+        }
+      }
+      @media only screen and (max-width: 920px) {
+    
+        .container{
+          width: 800px;
+          height: 60vh;
+        }
+        .myLeftCtn{
+          width: 800px;
+          padding-left: 0.4em
+        }
+        .myLeftCtn .myInput{
+          width: 300px;
+        }
+        .myCard{
+          width: 700px;
+        }
+        .butt{
+          margin-top: 1em;
+          margin-left: 2em;
+        }
+      }
+      @media only screen and (max-width: 829px) {
+        .container{
+          width: 700px;
+        }
+        .myLeftCtn{
+          width: 600px;
+        }
+      }
+      @media only screen and (max-width: 760px) {
+        .container{
+          width: 600px;
+        }
+        .myCard{
+          width: 600px;
+        }
+      }
+      @media only screen and (max-width: 660px) {
+        .container{
+          width: 400px;
+          transform: translate(-70%,-0%);
+        }
+        .myLeftCtn{
+          width: 500px;
+        }
+        .myCard{
+          width: auto;
+        }
+      }
+      @media only screen and (max-width: 480px){
+        .container{
+          width: 300px;
+          height: 80vh;
+          transform: translate(-90%,5%);
+        }
+        .myLeftCtn{
+          width: 450px;
+          height: 80vh;
+        }
+        .form-group label{
+          width: 100vw;
+        }
+        .form-group .myInput{
+          width: 80vw;
+          margin-left: 2em;
+          margin-right: 2em;
+        }
+      }
+</style>
+<body>
+        <!-- Top bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <i class="fa fa-envelope"></i>
+                        joyrides@email.com
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fa fa-phone-alt"></i>
+                        +012-345-6789
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top bar End -->
+    
+        <!-- Nav Bar Start -->
+        <div class="nav">
+          <div class="container-fluid">
+  
+              <nav class="navbar navbar-expand-md navbar-light">
+                  <div class="logo">
+                      <a href="{% url 'home' %}">
+                          <img src="{% static 'images/images/logo.png' %}" alt="Logo" class="logo">
+                          <span class="logo_name">JOYRIDES</span>
+                      </a>
+                  </div>
+                  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+  
+                  <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                      <div class="navbar-nav mr-auto">
+                          <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                          <a href="{% url 'menu' %}" class="nav-item nav-link">Products</a>
+                          <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+                          <a href="{% url 'about' %}"class="nav-item nav-link">About Us</a>
+                      </div>
+                      <div class="navbar-nav ml-auto">
+                          <div class="nav-item dropdown">
+                              {% if 'email' in request.session %}
+                              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                              <div class="dropdown-menu">
+                                  <a href="" class="dropdown-item">Profile</a>
+                                  <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                              </div>
+                              
+                              {% else %}
+                              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sign In/Sign Up</a>
+                              <div class="dropdown-menu">
+                                  <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                                  <a href="{% url 'signup' %}" class="dropdown-item">Register</a>
+                              </div>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              </nav>
+          </div>
+      </div>
+        <!-- Nav Bar End -->
+        {% if messages %}
+{% for msg in messages %}
+{% if msg.level_tag == "error" %}
+<div class="alert alert-danger bg-danger text-white btnClose" role="alert">
+    {{msg.message}}
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+</div>
+{% else %}
+<div class="alert alert-success bg-success text-white btnClose" role="alert">
+    {{msg.message}}
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+    <div class="container">
+        <div class="myCard">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="myLeftCtn">
+                        <form class="myForm text-center" method="POST" action="{% url 'login' %}" enctype="multipart/form-data">
+                          {% csrf_token %}
+                            <header>Login</header>
+                            <div class="form-group">
+                                <label class="label">Email</label>
+                                <input class="myInput" type="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Password</label>
+                                <input class="myInput" type="password" name="password" placeholder="Password" required>
+                            </div>
+
+                            <input type="submit" class="butt" value="CREATE ACCOUNT">
+
+                            <p class="logged_in">Create new Account? <a href="{% url 'signup' %}">Click Here</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            setTimeout(function () {
+                $(".btnClose").remove();
+            }, 3000);
+        });
+    </script>
+
+</body>
+
+</html>

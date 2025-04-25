@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="">
+    
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    
+</head>
+<style>
+    img{
+        width: 5em;
+        height: 5em;
+    }
+</style>
+<body>
+    {% if messages %}
+{% for msg in messages %}
+{% if msg.level_tag == "error" %}
+<div class="alert alert-danger bg-danger text-white btnClose" role="alert">
+    {{msg.message}}
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+</div>
+{% else %}
+<div class="alert alert-success bg-success text-white btnClose" role="alert">
+    {{msg.message}}
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+    <h2 class="text-center">Dashboard</h2>
+    <div class="container">
+      
+        <ul class="nav nav-tabs">
+          <li><a href="{% url 'user_list' %}">User</a></li>
+          <li class="active"><a data-toggle="tab"  href="#prod_detail">Product Details</a></li>
+          <li><a href="{% url 'add_prod' %}">Add Product</a></li>
+          <li><a href="{% url 'order_list' %}">Order List</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="prod_detail" class="tab-pane fade in active">
+                <h3>Product Details</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">mileage</th>
+                            <th scope="col">color</th>
+                            <th scope="col">cc</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <td scope="row">{{ forloop.counter }}</td>
+                            <td><img src="{{ i.prod_img.url }}" alt=""></td>
+                            <td>{{ i.prod_name }}</td>
+                            <td>{{ i.price }}</td>
+                            <td>{{ i.mileage }}</td>
+                            <td>{{ i.color }}</td>
+                            <td>{{ i.cc }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary text-white mr-2" href="{% url 'editProd' i.id %}">Edit</a>
+                                <a class="btn btn-sm btn-danger text-white" href="{% url 'deleteProd' i.id  %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                          
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+
+        <script>
+            $(document).ready(function() {
+                setTimeout(function () {
+                    $(".btnClose").remove();
+                }, 3000);
+            });
+        </script>
+</body>
+
+</html>

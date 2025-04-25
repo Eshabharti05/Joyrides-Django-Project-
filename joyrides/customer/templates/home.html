@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyrides</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/images/logo.png' %} ">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Libraries -->
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
+</head>
+
+<body>
+    <!-- Top bar Start -->
+    <div class="top-bar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <i class="fa fa-envelope"></i>
+                    joyrides@email.com
+                </div>
+                <div class="col-sm-6">
+                    <i class="fa fa-phone-alt"></i>
+                    +012-345-6789
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top bar End -->
+
+    <!-- Nav Bar Start -->
+    <div class="nav">
+        <div class="container-fluid">
+
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/images/logo.png' %}" alt="Logo" class="logo">
+                        <span class="logo_name">JOYRIDES</span>
+                    </a>
+                </div>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                        <a href="{% url 'menu' %}" class="nav-item nav-link">Products</a>
+                        <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+                        <a href="{% url 'about' %}"class="nav-item nav-link">About Us</a>
+                        <a href="{% url 'adminlogin' %}" class="nav-item nav-link">Admin</a>
+                            
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            {% if 'email' in request.session %}
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                            <div class="dropdown-menu">
+                                <a href="" class="dropdown-item">Profile</a>
+                                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                            </div>
+                            
+                            {% else %}
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sign In/Sign Up</a>
+                            <div class="dropdown-menu">
+                                <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                                <a href="{% url 'signup' %}" class="dropdown-item">Register</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+    {% if messages %}
+    {% for msg in messages %}
+    {% if msg.level_tag == "error" %}
+    <div class="alert alert-danger bg-danger text-white btnClose" role="alert">
+        {{msg.message}}
+        <button type="button" class="btn-close"  data-dismiss="alert" aria-label="Close">X</button>
+    </div>
+    {% else %}
+    <div class="alert alert-success bg-success text-white btnClose" role="alert">
+        {{msg.message}}
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>
+    </div>
+    {% endif %}
+    
+    {% endfor %}
+    
+    {% endif %}
+    <!-- Main Slider Start -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-slider normal-slider">
+                        <div class="slide-buttons">
+                                <div class="leftbtn" id="left" onclick="slide(-1)"><i class="fas fa-chevron-left"></i></div>
+                                <div class="rightbtn" id="right" onclick="slide(1)"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="header-slider-item">
+                            <img src="{% static 'images/image/1.jpg' %}" alt="Slider Image" id="img" />
+                            
+                            <div class="header-slider-caption">
+                                <p>WHY BUY WHEN YOU CAN RENT!!</p>
+                                <a class="btn" href="{% url 'menu' %}"><i class="fa fa-shopping-cart"></i>Rent Now</a>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="dotcontainer">
+                            <button class="dot" id="dot1" onclick="select(0);"></button>
+                            <button class="dot" id="dot2" onclick="select(1)"></button>
+                            <button class="dot" id="dot3" onclick="select(2)"></button>
+                            <button class="dot" id="dot3" onclick="select(3)"></button>
+                            <button class="dot" id="dot3" onclick="select(4)"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Slider End -->
+
+    <!-- Feature Start-->
+    <div class="feature">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fab fa-cc-mastercard"></i>
+                        <h2>Secure Payment</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur elit
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fa fa-truck"></i>
+                        <h2>Worldwide Delivery</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur elit
+                        </p>
+                    </div>
+                </div>
+                {% comment %} <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fa fa-sync-alt"></i>
+                        <h2>90 Days Return</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur elit
+                        </p>
+                    </div>
+                </div> {% endcomment %}
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fa fa-comments"></i>
+                        <h2>24/7 Support</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur elit
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End-->
+
+    <!-- Category Start-->
+    <div id="courses">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="mb-5">Top Rental Products</h1>
+                </div>
+                <marquee  onmouseover="stop()" onmouseleave="start()" behavior="scroll-behavior" direction="left" scrollamount="10">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{% url 'menu' %}">
+                            <div class="course-item bg-light">
+                                <div class="position-relative overflow-hidden">
+                                    <img class="img-fluid" src="{% static 'images/images/gal15.jpg' %}" alt="">
+                                </div>
+                                <div class="text-center p-4 pb-0">
+                                    <h3 class="mb-0">Rs. 500/hr</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <a href="{% url 'menu' %}">
+                            <div class="course-item bg-light">
+                                <div class="position-relative overflow-hidden">
+                                    <img class="img-fluid" src="{% static 'images/images/gal3.jpg' %}" alt="">
+                                </div>
+                                <div class="text-center p-4 pb-0">
+                                    <h3 class="mb-0">Rs. 200/hr</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                   
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <a href="{% url 'menu' %}">
+                            <div class="course-item">
+                                <div class="position-relative overflow-hidden">
+                                    <img class="img-fluid" src="{% static 'images/images/img5.jpg' %}" alt="">
+                                </div>
+                                <div class="text-center p-4 pb-0">
+                                    <h3 class="mb-0">Rs. 350/hr</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                </marquee>
+            </div>
+        </div>
+            </div>
+        <!-- Courses End -->
+    <!-- Category End-->
+
+    
+
+    
+    <!--footer start---->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Quick Link</h4>
+                    <a class="btn btn-link" href="{% url 'about' %}">About Us</a>
+                    {% comment %} <a class="btn btn-link" href="{% url 'contact' %}">Contact Us</a> {% endcomment %}
+                    <a class="btn btn-link" href="{% url 'bikes' %}">Rent Bike</a>
+                    <a class="btn btn-link" href="#{% url 'menu' %}">Menu</a>
+                    <a class="btn btn-link" href="{% url 'contact' %}">FAQs & Help</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Contact</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker me-3"></i>Lowadih, Ranchi</p>
+                    <p class="mb-2"><i class="fa fa-phone me-3"></i>1234567890, 9087654321</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                  
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234447.66995607846!2d85.18124037459347!3d23.3431424976028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4e104aa5db7dd%3A0xdc09d49d6899f43e!2sRanchi%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1685683660398!5m2!1sen!2sin" style="display: block;width:100%;" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            
+                </div>
+            </div>
+        </div>
+    
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            setTimeout(function () {
+                $(".btnClose").remove();
+            }, 3000);
+        });
+    </script>
+    
+    <!-- Template Javascript -->
+    <script src="{% static 'js/slider.js' %}"></script>
+</body>
+
+</html>
